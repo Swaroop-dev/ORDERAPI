@@ -48,12 +48,15 @@ builder.Services.AddAuthorization(options =>
 });
 builder.Services.AddScoped<JwtSecurityTokenHandlerWrapper>();
 // Configuration for [Authorize] attribute with custom filters
-builder.Services.AddControllersWithViews(options => {
-    options.Filters.Add(typeof(JwtAuthorizeFilter));
-});
+//builder.Services.AddControllersWithViews(options => {
+//    options.Filters.Add(typeof(JwtAuthorizeFilter));
+//});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//Need to add Middleware if Inherited from Imiddleware
+builder.Services.AddTransient<JwtMiddleware>();
+
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File("Log/application.log", rollingInterval: RollingInterval.Day)
     .CreateLogger();
@@ -71,7 +74,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//app.UseMiddleware<JwtMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
+app.UseMiddleware<PerfomanceLoggingMiddleware>();
 
 app.UseHttpsRedirection();
 

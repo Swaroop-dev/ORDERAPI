@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RESTAPI_PROJ.Decorators;
+using RESTAPI_PROJ.Middlewares;
 
 namespace RESTAPI_PROJ.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     [Authorize]
+
+
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
