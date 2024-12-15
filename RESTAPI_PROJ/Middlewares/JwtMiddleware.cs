@@ -1,7 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using RESTAPI_PROJ.Helpers;
-using Microsoft.AspNetCore.Mvc;
+
 
 namespace RESTAPI_PROJ.Middlewares
 {

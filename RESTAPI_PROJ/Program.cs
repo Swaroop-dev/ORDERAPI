@@ -65,7 +65,6 @@ builder.Services.AddLogging(loggingBuilder =>
 {
     loggingBuilder.AddSerilog();
 });
-//builder.Services.AddTransient<PerfomanceLoggingMiddleware>();
 
 var app = builder.Build();
 
@@ -75,7 +74,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//app.UseMiddleware<JwtMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
 app.UseMiddleware<PerfomanceLoggingMiddleware>();
 
 app.UseHttpsRedirection();
