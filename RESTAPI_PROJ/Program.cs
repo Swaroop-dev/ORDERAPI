@@ -9,6 +9,10 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using RESTAPI_PROJ.Decorators;
 using Serilog;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
+using RESTAPI_PROJ.Models;
+
 
 DotEnv.Load();
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +20,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+//rate limitting 
+var tokenPolicy = "token";
+var myOptions = new RESTAPI_PROJ.Models.RateLimitingModel();
+builder.Configuration.GetSection("MyRateLimitOptions").Bind(myOptions);
+
+builder.Services.AddRateLimiter(_ => _
+    .AddTokenBucketLimiter(policyName: tokenPolicy, options =>
+    {
+        options.TokenLimit = myOptions.TokenLimit;
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = myOptions.QueueLimit;
+        options.ReplenishmentPeriod = TimeSpan.FromSeconds(myOptions.ReplenishmentPeriod);
+        options.TokensPerPeriod = myOptions.TokensPerPeriod;
+        options.AutoReplenishment = myOptions.AutoReplenishment;
+    }));
 
 //Adding AUthentication as a service
 builder.Services.AddAuthentication(options =>

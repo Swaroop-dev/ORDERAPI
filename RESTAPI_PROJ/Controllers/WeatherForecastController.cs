@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using RESTAPI_PROJ.Decorators;
 using RESTAPI_PROJ.Middlewares;
 
@@ -9,7 +10,7 @@ namespace RESTAPI_PROJ.Controllers
     [Route("[controller]")]
     [Authorize]
 
-
+    [EnableRateLimiting("token")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
