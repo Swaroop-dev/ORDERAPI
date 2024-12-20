@@ -12,6 +12,7 @@ using Serilog;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using RESTAPI_PROJ.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 DotEnv.Load();
@@ -84,6 +85,9 @@ builder.Services.AddLogging(loggingBuilder =>
 {
     loggingBuilder.AddSerilog();
 });
+//ADded Db context
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
 var app = builder.Build();
 
