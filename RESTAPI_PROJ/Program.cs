@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using RESTAPI_PROJ.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+using RESTAPI_PROJ.Services;
+using RESTAPI_PROJ.Repositories;
 
 
 DotEnv.Load();
@@ -88,6 +91,10 @@ builder.Services.AddLogging(loggingBuilder =>
 //ADded Db context
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+
+builder.Services.AddScoped<IUserservice, Userservice>();
+builder.Services.AddScoped<IUserrepository, Userrepository>();
+
 
 var app = builder.Build();
 
