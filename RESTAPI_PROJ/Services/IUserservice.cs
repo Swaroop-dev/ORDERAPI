@@ -4,6 +4,6 @@ namespace RESTAPI_PROJ.Services
 {
     public interface IUserservice
     {
-        UserModel GetUserbyid(int id);
+        Task<UserModel> GetUserbyid(int id);
     }
 }

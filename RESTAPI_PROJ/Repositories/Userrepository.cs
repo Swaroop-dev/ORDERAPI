@@ -1,4 +1,5 @@
-﻿using RESTAPI_PROJ.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RESTAPI_PROJ.Models;
 
 namespace RESTAPI_PROJ.Repositories
 {
@@ -11,9 +12,9 @@ namespace RESTAPI_PROJ.Repositories
             _context = context;
         }
 
-        public  UserModel GetUserById(int id)
+        public  async Task<UserModel> GetUserById(int id)
         {
-            return _context.Users.FirstOrDefault(x => x.id == id);
+            return await _context.Users.FirstOrDefaultAsync(x => x.id == id);
         }
 
 

@@ -4,6 +4,6 @@ namespace RESTAPI_PROJ.Repositories
 {
     public interface IUserrepository
     {
-        UserModel GetUserById(int id);
+        Task<UserModel> GetUserById(int id);
     }
 }

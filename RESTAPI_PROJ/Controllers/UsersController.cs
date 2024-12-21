@@ -6,7 +6,7 @@ namespace RESTAPI_PROJ.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IUserservice _userservice;
 
@@ -15,12 +15,21 @@ namespace RESTAPI_PROJ.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetAllUsers(int id)
+        public async Task<IActionResult> GetAllUsers(int id)
         {
+            try
+            {
+                UserModel model = new UserModel();
+                model = await _userservice.GetUserbyid(id);
+                return Ok(model);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
             
-            UserModel model = new UserModel();
-            model = _userservice.GetUserbyid(id);
-            return Ok(model);
+            
         }
     }
 }

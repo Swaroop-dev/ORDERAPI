@@ -12,9 +12,14 @@ namespace RESTAPI_PROJ.Services
             _userrepository = userrepository;
         }
 
-        public UserModel GetUserbyid(int id)
+        public async Task<UserModel> GetUserbyid(int id)
         {
-            return _userrepository.GetUserById(id);
+            if (id == null || id == 0) { 
+                throw new ArgumentNullException("id");
+            }
+            var user= await _userrepository.GetUserById(id);
+
+            return user;
         }
 
 
