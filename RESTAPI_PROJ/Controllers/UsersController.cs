@@ -31,5 +31,20 @@ namespace RESTAPI_PROJ.Controllers
             
             
         }
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterUser([FromBody] UserModel user)
+        {
+            try
+            {
+                var res = await _userservice.Registeruser(user);
+                return Ok(new {message="User created Successfully"});
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+            
+        }
     }
 }

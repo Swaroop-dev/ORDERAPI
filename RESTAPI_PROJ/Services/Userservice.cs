@@ -14,7 +14,8 @@ namespace RESTAPI_PROJ.Services
 
         public async Task<UserModel> GetUserbyid(int id)
         {
-            if (id == null || id == 0) { 
+            if ( id == 0) { 
+                
                 throw new ArgumentNullException("id");
             }
             var user= await _userrepository.GetUserById(id);
@@ -22,7 +23,19 @@ namespace RESTAPI_PROJ.Services
             return user;
         }
 
+        public async Task<bool> Registeruser(UserModel user)
+        {
+            if (await _userrepository.Isemailtaken(user.emailid))
+            {
+                throw new InvalidOperationException();
+            }
+            if (await _userrepository.IsusernameTaken(user.username))
+            {
+                throw new InvalidOperationException();
+            }
 
+            return await _userrepository.RegisterUser(user);
 
+        }
     }
 }
