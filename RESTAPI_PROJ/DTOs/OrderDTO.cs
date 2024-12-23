@@ -37,5 +37,7 @@ namespace RESTAPI_PROJ.DTOs
         public string OrderStatus { get; set; }
 
         public int TotalPrice { get; set; }
+
+        public string ResturantName { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace RESTAPI_PROJ.Repositories
     {
         //Task<OrderDetails> GetorderDetailsByid(int orderid);
 
-        Task<List<OrderModel>> GetAllOrders(int userid);
+        Task<List<Order>> GetAllOrders(int userid);
 
     }
 }

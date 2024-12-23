@@ -19,16 +19,11 @@ namespace RESTAPI_PROJ.Services
             }
 
             var orderList = await _repository.GetAllOrders(userid);
-            //Convert EntityModel to DTO
-            List<Order> orders = new List<Order>();
-            foreach (var order in orderList) { 
-                orders.Add(MapToOrderDTO(order));
-            }
-
-            return orders;
+          
+            return orderList;
         }
 
-
+        //unused
         private Order MapToOrderDTO(OrderModel order) { 
             Order order1 = new Order();
             if (order.id==null)

@@ -11,6 +11,9 @@ namespace RESTAPI_PROJ.Models
         //private readonly IConfiguration configuration;
         public DbSet<UserModel> Users { get; set; }
         public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<AddressModel> Address { get; set; }
+        public DbSet<ResturantModel> Resturants { get; set; }   
+
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -26,6 +29,8 @@ namespace RESTAPI_PROJ.Models
         {
             modelBuilder.Entity<UserModel>().ToTable("users");
             modelBuilder.Entity<OrderModel>().ToTable("orders");
+            modelBuilder.Entity<AddressModel>().ToTable("usersaved_address");
+            modelBuilder.Entity<ResturantModel>().ToTable("resturant");
 
         }
 

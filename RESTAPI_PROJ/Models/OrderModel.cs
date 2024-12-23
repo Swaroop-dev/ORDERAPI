@@ -9,5 +9,7 @@
         public string order_status {get; set;}  
 
         public int  user_id { get; set;}
+
+        public int restuarant_id { get; set;}   
     }
 }
