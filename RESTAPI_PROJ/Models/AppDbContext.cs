@@ -10,6 +10,7 @@ namespace RESTAPI_PROJ.Models
     {
         //private readonly IConfiguration configuration;
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<OrderModel> Orders { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -24,7 +25,10 @@ namespace RESTAPI_PROJ.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserModel>().ToTable("users");
+            modelBuilder.Entity<OrderModel>().ToTable("orders");
+
         }
+
 
 
     }
