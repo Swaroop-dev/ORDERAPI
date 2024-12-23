@@ -12,12 +12,30 @@ namespace RESTAPI_PROJ.Services
             _userrepository = userrepository;
         }
 
-        public UserModel GetUserbyid(int id)
+        public async Task<UserModel> GetUserbyid(int id)
         {
-            return _userrepository.GetUserById(id);
+            if ( id == 0) { 
+                
+                throw new ArgumentNullException("id");
+            }
+            var user= await _userrepository.GetUserById(id);
+
+            return user;
         }
 
+        public async Task<bool> Registeruser(UserModel user)
+        {
+            if (await _userrepository.Isemailtaken(user.emailid))
+            {
+                throw new InvalidOperationException();
+            }
+            if (await _userrepository.IsusernameTaken(user.username))
+            {
+                throw new InvalidOperationException();
+            }
 
+            return await _userrepository.RegisterUser(user);
 
+        }
     }
 }
