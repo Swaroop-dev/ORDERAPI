@@ -5,5 +5,6 @@ namespace RESTAPI_PROJ.Services
     public interface IOrderservice
     {
         Task<List<Order>> GetAllOrder(int userid);
+        Task<OrderDetails> GetOrderDetailsById(int orderId);
     }
 }

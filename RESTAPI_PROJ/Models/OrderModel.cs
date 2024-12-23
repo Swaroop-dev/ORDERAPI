@@ -11,5 +11,6 @@
         public int  user_id { get; set;}
 
         public int restuarant_id { get; set;}   
+        public int address { get; set;} 
     }
 }

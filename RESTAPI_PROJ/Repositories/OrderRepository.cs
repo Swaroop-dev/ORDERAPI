@@ -38,9 +38,24 @@ namespace RESTAPI_PROJ.Repositories
 
         }
 
-        //public async Task<OrderDetails> GetorderDetailsByid(int id)
-        //{
-        //    return
-        //}
+        public async Task<OrderModel> GetorderDetailsByid(int id)
+        {
+            var orderDetail= await _appDbContext.Orders.FirstOrDefaultAsync(x=>x.id==id);
+            return orderDetail ;
+        }
+
+        public async Task<ResturantModel>GetResturantDetails(int id)
+        {
+            var resturantDetails=await _appDbContext.Resturants.FirstOrDefaultAsync(x=>x.id==id);
+
+            return resturantDetails;
+        }
+
+        public async Task<AddressModel> GetAddressDetails(int id)
+        {
+            var usersavedaddress=await _appDbContext.Address.FirstOrDefaultAsync(x=>x.id==id);
+
+            return usersavedaddress;
+        }
     }
 }

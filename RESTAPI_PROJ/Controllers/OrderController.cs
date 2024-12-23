@@ -32,6 +32,28 @@ namespace RESTAPI_PROJ.Controllers
         }
 
 
-       
+
+        [HttpGet("{id}/user/{userId}")]
+        public async Task<IActionResult> GetOrdersById(int id,int userId)
+        {
+            try
+            {
+                var orderlist = await _orderservice.GetOrderDetailsById(id);
+                if (orderlist == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(orderlist);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
+
     }
 }

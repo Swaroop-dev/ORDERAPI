@@ -8,7 +8,7 @@
         public int owner_id { get; set; }   
 
         public string address_line_1 { get; set; }  
-        public string address_line_2 { get; set; }
+        public string? address_line_2 { get; set; }
 
         public string state { get; set; }   
 

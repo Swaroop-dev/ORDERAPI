@@ -1,4 +1,5 @@
-﻿using RESTAPI_PROJ.DTOs;
+﻿using System.Threading.Tasks;
+using RESTAPI_PROJ.DTOs;
 using RESTAPI_PROJ.Models;
 
 namespace RESTAPI_PROJ.Repositories
@@ -9,5 +10,8 @@ namespace RESTAPI_PROJ.Repositories
 
         Task<List<Order>> GetAllOrders(int userid);
 
+        Task<OrderModel> GetorderDetailsByid(int id);
+        Task<AddressModel> GetAddressDetails(int id);
+        Task<ResturantModel> GetResturantDetails(int id);
     }
 }
