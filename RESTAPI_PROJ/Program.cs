@@ -96,6 +96,8 @@ builder.Services.AddScoped<IUserservice, Userservice>();
 builder.Services.AddScoped<IUserrepository, Userrepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderservice, Orderservice>();
+builder.Services.AddScoped<IResturantservice,Resturantservice>();
+builder.Services.AddScoped<IResturantRepository, ResturantRepository>();
 
 
 var app = builder.Build();
